@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+
+    <div id="app">
+        <ul>
+            <li v-for="item in stars">{{item}}</li>
+        </ul>
+
+        <br>
+        <ul>
+            <li v-for="item,index in students">{{index+1}}【名字：{{item.name}}，年龄：{{item.age}}，学校：{{item.school}}】</li>
+        </ul>
+    </div>
+
+    <script>
+
+        let app = new Vue({
+
+            el: "#app",
+            data: {
+                message: "Hello Vue",
+                stars: ['蔡徐坤', '苏有朋', '范冰冰', '李晨'],
+                students: [{
+                    name: '小明',
+                    age: '18',
+                    school: '北京大学'
+                }, {
+                    name: '小红',
+                    age: '18',
+                    school: '清华大学'
+                }, {
+                    name: '小黄',
+                    age: '19',
+                    school: '浙江大学'
+                }]
+            }
+        });
+
+    </script>
+</body>
+
+</html>
