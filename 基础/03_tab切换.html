@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+
+    <div id="app">
+        <h3 v-if="tab == 0">首页</h3>
+        <h3 v-if="tab == 1">新闻</h3>
+        <h3 v-if="tab == 2">个人</h3>
+
+        <button @click="tabChange" data-id="0">首页</button>
+        <button @click="tabChange" data-id="1">新闻</button>
+        <button @click="tabChange" data-id="2">个人</button>
+    </div>
+
+    <script>
+
+        var app = new Vue({
+            el: "#app",
+            data: {
+                message: "Hello Vue",
+                tab: 0
+            },
+            methods: {
+                tabChange: (e) => {
+                    app.tab = e.target.dataset.id;
+                }
+            }
+        });
+
+    </script>
+</body>
+
+</html>
