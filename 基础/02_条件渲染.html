@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+</head>
+
+<body>
+
+    <div id="app">
+        <h1>用户名：{{ username }}</h1>
+        <h3 v-if="isVip">VIP</h3>
+        <h3 v-else></h3>普通用户</h3>
+
+        <h3>登录时间：
+            <span v-if="age > 18">成年</span>
+            <span v-if="age >= 12 && age < 18">中学生</span>
+            <span v-if="age < 12 ">小学生</span>
+        </h3>
+
+        <button @click="showH3">切换</button>
+        <h3 v-show="isShow">显示</h3>
+
+
+
+    </div>
+
+
+    <script>
+
+        var app = new Vue({
+            el: "#app",
+            data: {
+                username: "37",
+                isVip: false,
+                age: 50,
+                isShow: true
+            },
+            methods: {
+                showH3: () => {
+                    app.isShow = !app.isShow;
+                }
+            }
+        });
+
+
+
+    </script>
+
+</body>
+
+</html>
