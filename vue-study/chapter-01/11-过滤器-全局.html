@@ -12,14 +12,19 @@
 <body>
 
     <div id="app">
-        {{msg}}
+        {{msg | format}}
     </div>
 
     <script>
-        var vm = new Vue({
+
+        Vue.filter('format', (str) => {
+            return str.replace(/学院/g, '大学');
+        });
+
+        let vue = new Vue({
             el: '#app',
             data: {
-                msg: 'hello vue'
+                msg: 'AA学院，BB学院，CC学院'
             }
         });
     </script>
