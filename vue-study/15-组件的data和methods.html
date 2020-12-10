@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 开发版本 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.21/dist/vue.js"></script>
+</head>
+
+<body>
+
+    <template id="abc">
+        <div>
+            <p>这是一个组件111</p>
+            <p>这是一个组件222</p>
+            <button @click="click">按钮</button>
+            <p>data：{{msg}}</p>
+        </div>
+    </template>
+
+    <div id="app">
+        <abc></abc>
+    </div>
+
+
+    <script>
+        let vue = new Vue({
+            el: '#app',
+            data: {
+                msg: 'hello vue'
+            },
+            components: {
+                "abc": {
+                    template: '#abc',
+                    data: () => {
+                        return {
+                            msg: '数据'
+                        }
+                    },
+                    methods: {
+                        click() {
+                            alert('0');
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
