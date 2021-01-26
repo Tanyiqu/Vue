@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<!--suppress ALL -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 开发版本 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.21/dist/vue.js"></script>
+</head>
+
+<body>
+
+<div id="app">
+    <my1></my1>
+</div>
+
+<div id="app2">
+    <my2></my2>
+</div>
+
+
+<template id="my1">
+    <div>
+        <div style="background: pink;width: 150px;height: 150px"></div>
+        <p>我是全局组件</p>
+    </div>
+</template>
+
+<template id="my2">
+    <div>
+        <div style="background: pink;width: 150px;height: 150px"></div>
+        <p>我是局部组件</p>
+    </div>
+</template>
+
+<script>
+    // 注册组件
+    Vue.component('my1', {
+        template: '#my1'
+    });
+
+    let vue = new Vue({
+        el: '#app'
+    });
+
+    let vue2 = new Vue({
+        el: '#app2',
+        components: {
+            'my2': {
+                template: '#my2'
+            }
+        }
+    });
+
+</script>
+
+</body>
+
+</html>
