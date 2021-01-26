@@ -27,7 +27,7 @@
             },
             mounted() {
                 let that = this;
-                axios.get('../../user-data.json').then(resp => {
+                axios.get('user-data.json').then(resp => {
                     console.log(resp.data);
                     that.users = resp.data.data;
                 });
