@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<!--suppress ALL -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 开发版本 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.21/dist/vue.js"></script>
+</head>
+
+<body>
+
+<div id="app">
+    <my></my>
+</div>
+
+<template id="my">
+    <div>
+        <div style="background: pink;width: 150px;height: 150px"></div>
+        <p>我是一段文字</p>
+    </div>
+</template>
+
+<script>
+    // 注册组件
+    Vue.component('my', {template: '#my'});
+
+    let vue = new Vue({
+        el: '#app'
+    });
+
+</script>
+
+</body>
+
+</html>
