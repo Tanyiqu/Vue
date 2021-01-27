@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 开发版本 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.21/dist/vue.js"></script>
+</head>
+
+<body>
+
+<div id="app">
+    <grandfather></grandfather>
+</div>
+
+<template id="grandfather">
+    <div>
+        <p>{{name}}</p>
+        <father :gfname="name" @gfsay="say"></father>
+        <button @click="say">grandfather</button>
+    </div>
+</template>
+
+<template id="father">
+    <div>
+        <p>{{gfname}}</p>
+        <son :fname="gfname" @fsay="fathersay"></son>
+        <button @click="fathersay">father</button>
+    </div>
+</template>
+
+<template id="son">
+    <div>
+        <p>{{fname}}</p>
+        <button @click="sonsay">son</button>
+    </div>
+</template>
+
+<script>
+
+    let vue = new Vue({
+        el: '#app',
+        components: {
+            // 爷爷组件
+            'grandfather': {
+                template: '#grandfather',
+                data: () => {
+                    return {
+                        name: 'tanyiqu'
+                    }
+                },
+                methods: {
+                    say() {
+                        alert('gf')
+                    }
+                },
+                components: {
+                    // 父亲组件
+                    'father': {
+                        template: '#father',
+                        props: ['gfname'],
+                        methods: {
+                            fathersay() {
+                                this.$emit('gfsay');
+                            }
+                        },
+                        components: {
+                            // 儿子组件
+                            'son': {
+                                template: '#son',
+                                props: ['fname'],
+                                methods:{
+                                    sonsay(){
+                                        this.$emit('fsay');
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+    });
+
+</script>
+
+</body>
+
+</html>
