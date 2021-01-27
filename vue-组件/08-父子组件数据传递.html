@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 开发版本 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.21/dist/vue.js"></script>
+</head>
+
+<body>
+
+<div id="app">
+    <father></father>
+</div>
+
+<template id="father">
+    <div>
+        <p>{{name}}</p>
+        <p>{{age}}</p>
+        <son :parentname="name" :parentage="age"></son>
+    </div>
+</template>
+
+<template id="son">
+    <div>
+        <p>{{parentname}}</p>
+        <p>{{parentage}}</p>
+    </div>
+</template>
+
+<script>
+
+    let vue = new Vue({
+        el: '#app',
+        components: {
+            'father': {
+                template: '#father',
+                data: () => {
+                    return {
+                        name: 'tanyiqu',
+                        age: 21
+                    }
+                },
+                components: {
+                    'son': {
+                        template: '#son',
+                        props: ['parentname', 'parentage']
+                    }
+                }
+            }
+        }
+    });
+
+</script>
+
+</body>
+
+</html>
