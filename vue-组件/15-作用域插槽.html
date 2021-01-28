@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="vue.js"></script>
+</head>
+
+<body>
+
+<div id="app">
+    <father></father>
+</div>
+
+<template id="father">
+    <div>
+        <p>我是父组件</p>
+        <son>
+            <!-- 使用 slot-scope 接收 -->
+            <template slot-scope="abc">
+                <li v-for="name in abc.names">{{name}}</li>
+            </template>
+
+        </son>
+    </div>
+</template>
+
+<template id="son">
+    <div>
+        <p>我是头部</p>
+        <!-- 将names暴露出去 -->
+        <slot v-bind:names="names">我是默认内容 {{names}}</slot>
+        <p>我是底部</p>
+    </div>
+</template>
+
+<script>
+
+    let vue = new Vue({
+        el: '#app',
+        components: {
+            'father': {
+                template: '#father',
+                components: {
+                    'son': {
+                        template: '#son',
+                        data: () => {
+                            return {
+                                names: ['tanyiqu', 'root']
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    });
+
+</script>
+
+</body>
+
+</html>
