@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="vue.js"></script>
+</head>
+
+<body>
+
+<div id="app">
+    <father></father>
+</div>
+
+<template id="father">
+    <div>
+        <p>我是父组件</p>
+        <son>
+            <template v-slot:one>
+                <p>v-slot one</p>
+            </template>
+
+            <!-- 可以使用 # 简写 -->
+            <template #two>
+                <p>v-slot two</p>
+            </template>
+        </son>
+    </div>
+</template>
+
+<template id="son">
+    <div>
+        <p>我是头部</p>
+        <slot name="one">我是默认内容 one</slot>
+        <slot name="two">我是默认内容 two</slot>
+        <p>我是底部</p>
+    </div>
+</template>
+
+<script>
+
+    let vue = new Vue({
+        el: '#app',
+        components: {
+            'father': {
+                template: '#father',
+                components: {
+                    'son': {
+                        template: '#son'
+                    }
+                }
+            }
+        }
+    });
+
+</script>
+
+</body>
+
+</html>
