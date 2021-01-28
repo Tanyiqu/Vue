@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="vue.js"></script>
+    <script src="vuex.js"></script>
+</head>
+
+<body>
+
+<div id="app">
+    <father></father>
+</div>
+
+<template id="father">
+    <div>
+        <son1></son1>
+        <son2></son2>
+    </div>
+</template>
+
+<template id="son1">
+    <div>
+        <button @click="add">+</button>
+        <button @click="sub">-</button>
+        <input :value="this.$store.state.count" type="number">
+    </div>
+</template>
+
+<template id="son2">
+    <div>
+        <p>{{this.$store.state.count}}</p>
+    </div>
+</template>
+
+<script>
+    // 创建vuex
+    const store = new Vuex.Store({
+        state: {
+            count: 0
+        },
+        mutations: {
+            add(state) {
+                state.count++;
+            },
+            sub(state) {
+                state.count--;
+            }
+        }
+    });
+
+    // 注册组件
+    Vue.component('father', {
+        template: '#father',
+        store: store,
+        components: {
+            'son1': {
+                template: '#son1',
+                methods: {
+                    add() {
+                        this.$store.commit('add');
+                    },
+                    sub() {
+                        this.$store.commit('sub');
+                    }
+                }
+            },
+            'son2': {
+                template: '#son2'
+            }
+        }
+    })
+    ;
+
+    let vue = new Vue({
+        el: '#app'
+    });
+
+</script>
+
+</body>
+
+</html>
