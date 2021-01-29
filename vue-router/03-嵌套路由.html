@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="vue.js"></script>
+    <script src="vue-router.js"></script>
+    <style>
+        /* 激活样式 */
+        .link-active {
+            background: aqua;
+        }
+    </style>
+</head>
+
+<body>
+
+<div id="app">
+    <router-link tag="button" to="/one">one</router-link>
+    <router-link tag="button" to="/two">two</router-link>
+    <router-view></router-view>
+</div>
+
+<template id="one">
+    <div style="width: 500px;height: 500px;background: pink">
+        <p>我是组件 one</p>
+        <router-link tag="button" to="/one/sub1">one</router-link>
+        <router-link tag="button" to="/one/sub2">two</router-link>
+        <router-view></router-view>
+    </div>
+</template>
+
+<template id="two">
+    <div style="width: 500px;height: 500px;background: beige">
+        <p>我是组件 two</p>
+    </div>
+</template>
+
+<template id="sub1">
+    <div style="width: 300px;height: 300px;background: khaki">
+        <p>我是组件 sub1</p>
+    </div>
+</template>
+
+<template id="sub2">
+    <div style="width: 300px;height: 300px;background: slateblue">
+        <p>我是组件 sub2</p>
+    </div>
+</template>
+
+<script>
+
+    const one = {
+        template: '#one'
+    };
+    const two = {
+        template: '#two'
+    };
+    const sub1 = {
+        template: '#sub1'
+    };
+    const sub2 = {
+        template: '#sub2'
+    };
+
+    const routes = [
+            {path: '/', redirect: '/one'},
+            {
+                path: '/one',
+                component: one,
+                children: [
+                    {
+                        path: 'sub1',
+                        component: sub1
+                    },
+                    {
+                        path: 'sub2',
+                        component: sub2
+                    }
+                ]
+            },
+            {path: '/two', component: two}
+        ]
+    ;
+
+    const router = new VueRouter({
+        routes: routes,
+        linkActiveClass: 'link-active'
+    });
+
+
+    let vue = new Vue({
+        el: '#app',
+        router: router,
+        components: {
+            one: one,
+            two: two,
+            sub1: sub1,
+            sub2: sub2
+        }
+    });
+
+</script>
+
+</body>
+
+</html>
