@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="vue.js"></script>
+    <script src="vue-router.js"></script>
+</head>
+
+<body>
+
+<div id="app">
+    <a href="#/one">one</a>
+    <a href="#/two">two</a>
+    <router-view></router-view>
+</div>
+
+<template id="one">
+    <div>
+        <p>我是组件 one</p>
+    </div>
+</template>
+
+<template id="two">
+    <div>
+        <p>我是组件 two</p>
+    </div>
+</template>
+
+<script>
+
+    // 1.定义两个组件
+    const one = {
+        template: '#one'
+    };
+
+    const two = {
+        template: '#two'
+    };
+
+    // 2.创建vue-router对象
+    const routes = [
+        {path: '/one', component: one},
+        {path: '/two', component: two}
+    ];
+
+    const router = new VueRouter({
+        routes // (缩写) 相当于 routes: routes
+    });
+
+
+    let vue = new Vue({
+        el: '#app',
+        router: router,
+        components: {
+            one: one,
+            two: two
+        }
+    });
+
+</script>
+
+</body>
+
+</html>
